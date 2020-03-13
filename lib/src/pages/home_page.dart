@@ -14,10 +14,6 @@ class _HomePageState extends State<HomePage> {
 
   int currentIndex = 0;
 
-/*
-body: _callPage(currentIndex),
-bottomNavigationBar: _crearBottomNavigationBar(),
- */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
