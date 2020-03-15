@@ -1,10 +1,20 @@
+import 'package:desempenho/src/models/Consultor.dart';
 import 'package:flutter/material.dart';
 import 'package:desempenho/src/utils/ApiDesempenho.dart';
+import 'package:desempenho/src/models/PeriodoFilter.dart';
 
 class Provider extends InheritedWidget {
 
   // Instancia de la API Desempenho
   static ApiDesempenho desempenho = new ApiDesempenho();
+
+  static PeriodoFilter periodoFilter = new PeriodoFilter(
+    dateStart: DateTime.parse('2003-01-01 00:00:00'),
+    dateEnd: DateTime.parse('2007-12-31 00:00:00')
+  );
+
+  // Consultores seleccionados
+  static Set<Consultor> selectConsultores = new Set<Consultor>();
 
   // Instanciamos una sola vez la clase Provider
   static Provider _instancia;

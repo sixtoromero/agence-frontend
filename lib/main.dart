@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:desempenho/src/pages/home_page.dart';
+
 import 'package:desempenho/src/providers/Provider.dart';
+import 'package:desempenho/src/routes/routes.dart';
+//import 'package:desempenho/src/pages/home_page.dart';
 
 void main() => runApp(MyApp());
  
@@ -21,9 +24,7 @@ class MyApp extends StatelessWidget {
         ],
         title: 'Control de Actividades',
         initialRoute: 'home',
-        routes: {
-          'home': (BuildContext context) => HomePage()
-        },
+        routes: getApplicationRoutes(),
       ),
     );
   }
