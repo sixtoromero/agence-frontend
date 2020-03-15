@@ -1,0 +1,53 @@
+{
+    "nombreApp": "Desempenho",
+    "month" : [
+        {
+            "text": "Jan",
+            "value": "01"
+        },
+        {
+            "text": "Fev",
+            "value": "02"
+        },
+        {
+            "text": "Mar",
+            "value": "03"
+        },
+        {
+            "text": "Abr",
+            "value": "04"
+        },
+        {
+            "text": "Mai",
+            "value": "05"
+        },
+        {
+            "text": "Jun",
+            "value": "06"
+        },
+        {
+            "text": "Jul",
+            "value": "07"
+        },
+        {
+            "text": "Ago",
+            "value": "08"
+        },
+        {
+            "text": "Set",
+            "value": "09"
+        },
+        {
+            "text": "Out",
+            "value": "10"
+        },
+        {
+            "text": "Nov",
+            "value": "11"
+        },
+        {
+            "text": "Dez",
+            "value": "12"
+        }        
+    ]
+}
