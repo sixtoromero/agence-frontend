@@ -20,13 +20,7 @@ class ApiDesempenho {
       List responseJSON = json.decode( utf8.decode(response.bodyBytes) );
 
       responseJSON.map(( dynamic consultorData ){
-          Consultor consultor = Consultor.fromApi( consultorData );        
-          
-          if( Provider.selectConsultores.isNotEmpty ){
-            print('estoy dentro de la data seleccionada');
-           
-                                   
-          }
+          Consultor consultor = Consultor.fromApi( consultorData );                            
           consultores.add( consultor );
         }
       ).toSet();

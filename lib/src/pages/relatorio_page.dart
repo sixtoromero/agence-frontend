@@ -28,7 +28,8 @@ class _RelatorioPageState extends State<RelatorioPage> {
   }
 
   void getRelatorios() async {
-    relatorios  = await  Provider.desempenho.getRelatorios();    
+    relatorios  = await  Provider.desempenho.getRelatorios();
+    Provider.listRelatorio = relatorios;
 
     if( mounted ){
       setState(() {

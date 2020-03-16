@@ -1,4 +1,5 @@
 import 'package:desempenho/src/models/Consultor.dart';
+import 'package:desempenho/src/models/Relatorio.dart';
 import 'package:flutter/material.dart';
 import 'package:desempenho/src/utils/ApiDesempenho.dart';
 import 'package:desempenho/src/models/PeriodoFilter.dart';
@@ -15,6 +16,7 @@ class Provider extends InheritedWidget {
 
   // Consultores seleccionados
   static Set<Consultor> selectConsultores = new Set<Consultor>();
+  static Set<Relatorio> listRelatorio = new Set<Relatorio>();
 
   // Instanciamos una sola vez la clase Provider
   static Provider _instancia;
