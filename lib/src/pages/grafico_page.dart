@@ -41,7 +41,6 @@ class _GraficoPageState extends State<GraficoPage> {
         Provider.listRelatorio.forEach(( Relatorio relatorio){
           dataMap.putIfAbsent(relatorio.no_usuario, () => relatorio.receita_liquida);          
         });
-
         
         // dataMap.putIfAbsent("React", () => 3);
         // dataMap.putIfAbsent("Xamarin", () => 2);

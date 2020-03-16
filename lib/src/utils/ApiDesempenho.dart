@@ -12,8 +12,10 @@ class ApiDesempenho {
 
 
   Future<Set<Consultor>> getConsultores() async {
+    
     Set<Consultor> consultores = Set<Consultor>();
     http.Client client = new http.Client();
+    
     http.Response response = await client.get( CONSULTORESALL );
 
     if( response.statusCode == 200 ) { // OK

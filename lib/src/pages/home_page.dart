@@ -1,6 +1,7 @@
 import 'package:desempenho/src/pages/consultores_page.dart';
 import 'package:desempenho/src/pages/grafico_page.dart';
 import 'package:desempenho/src/pages/relatorio_page.dart';
+import 'package:desempenho/src/providers/Provider.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           icon: Icon(Icons.list),
           title: Text('Consultores')
         ),
-        BottomNavigationBarItem(
+         BottomNavigationBarItem(
           icon: Icon(Icons.grid_on),
           title: Text('Relatório')
         ),

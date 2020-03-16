@@ -14,6 +14,9 @@ class Provider extends InheritedWidget {
     dateEnd: DateTime.parse('2007-02-01 00:00:00')
   );
 
+  // Total count
+  static int pageEnabled = 0;
+
   // Consultores seleccionados
   static Set<Consultor> selectConsultores = new Set<Consultor>();
   static Set<Relatorio> listRelatorio = new Set<Relatorio>();

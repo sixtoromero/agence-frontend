@@ -1,3 +1,4 @@
+import 'package:desempenho/src/widgets/ItemNotFound.dart';
 import 'package:flutter/material.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 import 'package:desempenho/src/models/Consultor.dart';
@@ -80,6 +81,13 @@ class _ConsultoresPageState extends State<ConsultoresPage> {
       }
   }
 
+  void _callbackItemNotFound(){
+    setState(() {
+      loading = true;
+    });
+    _getConsultoresAll();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -112,6 +120,8 @@ class _ConsultoresPageState extends State<ConsultoresPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
          
+          
+          consultores != null ?
           Wrap(
             direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -127,23 +137,34 @@ class _ConsultoresPageState extends State<ConsultoresPage> {
                 onPressed: _showDatePicker,
               )
             ],
-          )
+          ) : Container()
         ],
       ),
       ),
     );
   }
 
-  ListView _buildCustomListView(){
-    return ListView.builder(
-      itemCount: consultores.length,
-      shrinkWrap: true, 
-      itemBuilder: (BuildContext context, int index) {
-        return _buildCustomItem(
-          consultor: consultores.elementAt(index)
-        );
-      },
-    );
+  Widget _buildCustomListView(){
+    if( consultores != null  ) {
+      return ListView.builder(
+        itemCount: consultores.length,
+        shrinkWrap: true, 
+        itemBuilder: (BuildContext context, int index) {
+          return _buildCustomItem(
+            consultor: consultores.elementAt(index)
+          );
+        },
+      );
+    } else {
+      return ItemNotFound(
+        title: 'Consultores',
+        message: 'No se ha podido descargar el contenido.', 
+        callback: _callbackItemNotFound,
+      );
+    }
+
+
+
   }
 
   Widget _buildCustomItem({ Consultor consultor }){
