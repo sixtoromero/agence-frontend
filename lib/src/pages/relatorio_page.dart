@@ -71,33 +71,39 @@ class _RelatorioPageState extends State<RelatorioPage> {
   }
 
   Widget buildCustomItem( Relatorio relatorio, String date ){    
-    final oCcy = new NumberFormat("#,##0.00", "en");
-    String comissao = oCcy.format(relatorio.comissao);
-    String receita_liquida = oCcy.format(relatorio.receita_liquida);
     
+    final oCcy = new NumberFormat("#,##0.00", "en");
+    
+    String receitaLiquida = oCcy.format(relatorio.receita_liquida);
+    String custoFixo = oCcy.format(relatorio.custo_fijo);
+    String comissao = oCcy.format(relatorio.comissao);
+    String lucro = oCcy.format(relatorio.lucro);
+
     return Column(
       children: <Widget>[
-        Text(relatorio.no_usuario, style: estyleLabel),
+        Divider(),
+        Text(relatorio.no_usuario, style: estyleLabel),        
         ListTile(
           title: Text('Periodo'),
           subtitle: Text(date),
         ),
         ListTile(
           title: Text('Receita Líquida'),
-          subtitle: Text(receita_liquida),
+          subtitle: Text(receitaLiquida),
         ),
         ListTile(
           title: Text('Custo Fixo'),
-          subtitle: Text(receita_liquida),
+          subtitle: Text(custoFixo),
         ),
         ListTile(
           title: Text('Comissão'),
-          subtitle: Text(receita_liquida),
+          subtitle: Text(comissao),
         ),
         ListTile(
           title: Text('Lucro'),
-          subtitle: Text(receita_liquida),
-        )
+          subtitle: Text(lucro),
+        ),
+        Divider(thickness: 2.0)
       ],
     );    
     
