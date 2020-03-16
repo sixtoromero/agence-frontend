@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:pie_chart/pie_chart.dart';
+
 import 'package:desempenho/src/models/Relatorio.dart';
 import 'package:desempenho/src/providers/Provider.dart';
-import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
 
 class GraficoPage extends StatefulWidget {
   @override
@@ -12,7 +14,7 @@ class _GraficoPageState extends State<GraficoPage> {
 
   final estyleLabel = TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold);
   bool toggle = true;
-  Map<String, double> dataMap = Map();  
+  Map<String, double> dataMap = Map();
 
   List<Color> colorList = [
     Colors.red,
@@ -38,7 +40,7 @@ class _GraficoPageState extends State<GraficoPage> {
 
         Provider.listRelatorio.forEach(( Relatorio relatorio){
           dataMap.putIfAbsent(relatorio.no_usuario, () => relatorio.receita_liquida);          
-        });        
+        });
 
         
         // dataMap.putIfAbsent("React", () => 3);
@@ -70,9 +72,9 @@ class _GraficoPageState extends State<GraficoPage> {
               _buildPie(),
             ],
           ),
-          Divider(),
-          Text('Gráfica Barra', style: estyleLabel),
-          Divider(),
+          // Divider(),
+          // Text('Gráfica Barra', style: estyleLabel),
+          // Divider(),
         ],
       )
     );

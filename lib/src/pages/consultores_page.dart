@@ -117,7 +117,7 @@ class _ConsultoresPageState extends State<ConsultoresPage> {
             crossAxisAlignment: WrapCrossAlignment.center,
             children: <Widget>[
               RaisedButton(
-                child: Text('Abrir calendario'),
+                child: Text('Periodo'),
                 shape: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
                   borderSide: BorderSide(
