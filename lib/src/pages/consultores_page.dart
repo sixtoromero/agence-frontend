@@ -50,7 +50,7 @@ class _ConsultoresPageState extends State<ConsultoresPage> {
       //showToast(e.toString(), context, toast.Toast.BOTTOM);
     }
   }
-  bool _checkConsultorSelected( Consultor consultor ) => Provider.selectConsultores.contains(consultor);
+  //bool _checkConsultorSelected( Consultor consultor ) => Provider.selectConsultores.contains(consultor);
   void _selectConsultor(Consultor consultor){
    
     if( consultor.selected ) {

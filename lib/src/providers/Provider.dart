@@ -9,8 +9,8 @@ class Provider extends InheritedWidget {
   static ApiDesempenho desempenho = new ApiDesempenho();
 
   static PeriodoFilter periodoFilter = new PeriodoFilter(
-    dateStart: DateTime.parse('2003-01-01 00:00:00'),
-    dateEnd: DateTime.parse('2007-12-31 00:00:00')
+    dateStart: DateTime.parse('2007-01-25 00:00:00'),
+    dateEnd: DateTime.parse('2007-02-01 00:00:00')
   );
 
   // Consultores seleccionados

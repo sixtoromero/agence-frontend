@@ -48,15 +48,25 @@ class ApiDesempenho {
 
 
     await Future.forEach(Provider.selectConsultores, ( Consultor consultor ) async {
+      
+      // response = await dio.get(
+      //   '$RELATORIOALL/${consultor.co_usuario}/${formatEN.format(Provider.periodoFilter.dateStart)}/${formatEN.format(Provider.periodoFilter.dateEnd)}'
+      // );
+      // await response.data.map(( dynamic relatorioJSON) async =>  relatorios.add( Relatorio.fromAPI(relatorioJSON, consultor.co_usuario, consultor.no_usuario) )).toSet();
+
       response = await dio.get(
-        '$RELATORIOALL/${consultor.co_usuario}/${formatEN.format(Provider.periodoFilter.dateStart)}/${formatEN.format(Provider.periodoFilter.dateEnd)}'
+        '$RELATORIO/${consultor.co_usuario}/${formatEN.format(Provider.periodoFilter.dateStart)}'
       );
       await response.data.map(( dynamic relatorioJSON) async =>  relatorios.add( Relatorio.fromAPI(relatorioJSON, consultor.co_usuario, consultor.no_usuario) )).toSet();
+
+      response = await dio.get(
+        '$RELATORIO/${consultor.co_usuario}/${formatEN.format(Provider.periodoFilter.dateEnd)}'
+      );
+      await response.data.map(( dynamic relatorioJSON) async =>  relatorios.add( Relatorio.fromAPI(relatorioJSON, consultor.co_usuario, consultor.no_usuario) )).toSet();      
+
     });
-  
-
-    return relatorios;
     
-  }
+    return relatorios;
 
+  }
 }
