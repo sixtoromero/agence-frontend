@@ -20,7 +20,8 @@ class _RelatorioPageState extends State<RelatorioPage> {
   Set<Relatorio> setRelatorios = new Set<Relatorio>();
 
   bool loading = true;
-  
+  final oCcy = new NumberFormat("#,##0.00", "en");
+
   @override
   void initState() {
     getRelatorios();
@@ -29,6 +30,38 @@ class _RelatorioPageState extends State<RelatorioPage> {
 
   void getRelatorios() async {
     relatorios  = await  Provider.desempenho.getRelatorios();
+     
+    String co_usuario; 
+    double liquida, fixo, comissao, lucro = 0.0;
+
+    relatorios.forEach((a){
+
+      relatorios.forEach((b){
+        if( a.co_usuario == b.co_usuario ){
+          if( co_usuario != b.co_usuario ){
+            liquida = 0.0;
+            fixo = 0.0;
+            comissao = 0.0; 
+            lucro = 0.0;
+          }
+          co_usuario = a.co_usuario;
+          liquida += b.receita_liquida;          
+          fixo += b.custo_fijo;          
+          comissao += b.comissao;
+          lucro += b.lucro;
+
+          a.totalLiquida = liquida;
+          a.totalFixo = fixo;
+          a.totalComissao = comissao;
+          a.lucro = lucro;
+
+          
+
+          
+        }
+      });
+    });
+
     Provider.listRelatorio = relatorios;
 
     if( mounted ){
@@ -65,15 +98,28 @@ class _RelatorioPageState extends State<RelatorioPage> {
       itemCount: relatorios.length,
       primary: false,
       shrinkWrap: true,
-      itemBuilder: (BuildContext context, int index) {               
-        return buildCustomItem( relatorios.elementAt(index), (index % 2) == 0 ? formatEN.format(Provider.periodoFilter.dateEnd) :  formatEN.format(Provider.periodoFilter.dateStart));
+      itemBuilder: (BuildContext context, int index) { 
+
+
+        if( index %2 == 0 ){
+          
+          print('Nombre: ${relatorios.elementAt(index).no_usuario}');
+           print('Receita Liquida ${relatorios.elementAt(index).totalLiquida}');
+           print('Custo Fixo ${relatorios.elementAt(index).totalFixo}');
+           print('Comissao ${relatorios.elementAt(index).totalComissao}');
+           print('Lucro ${relatorios.elementAt(index).totalLucro}');
+           print('\n');
+          
+        }            
+
+        return buildCustomItem( relatorios.elementAt(index), index);
       },
     );
   }
 
-  Widget buildCustomItem( Relatorio relatorio, String date ){    
+  Widget buildCustomItem( Relatorio relatorio, int index ){    
     
-    final oCcy = new NumberFormat("#,##0.00", "en");
+    
     
     String receitaLiquida = oCcy.format(relatorio.receita_liquida);
     String custoFixo = oCcy.format(relatorio.custo_fijo);
@@ -86,25 +132,26 @@ class _RelatorioPageState extends State<RelatorioPage> {
         Text(relatorio.no_usuario, style: estyleLabel),        
         ListTile(
           title: Text('Periodo'),
-          subtitle: Text(date),
+          subtitle: (index %2 == 0 ) ? Text(formatEN.format(Provider.periodoFilter.dateStart)) : Text(formatEN.format(Provider.periodoFilter.dateEnd)),
         ),
         ListTile(
           title: Text('Receita Líquida'),
-          subtitle: Text(receitaLiquida),
+          subtitle: Text('\$${receitaLiquida}'),
         ),
         ListTile(
           title: Text('Custo Fixo'),
-          subtitle: Text(custoFixo),
+          subtitle: Text('\$${custoFixo}'),
         ),
         ListTile(
           title: Text('Comissão'),
-          subtitle: Text(comissao),
+          subtitle: Text('\$${comissao}'),
         ),
         ListTile(
           title: Text('Lucro'),
-          subtitle: Text(lucro),
+          subtitle: Text('\$${lucro}'),
         ),
-        Divider(thickness: 2.0)
+        (index%2!=0) ? buildListTileTotales(relatorio) : Container(),
+        Divider(thickness: 2.0)        
       ],
     );    
     
@@ -115,33 +162,33 @@ class _RelatorioPageState extends State<RelatorioPage> {
     );*/
   }
 
-  Widget buildDataTable() {
-    return DataTable(
-      columns: <DataColumn>[
-        DataColumn(
-          label: Text('PRUEBA')
+  Widget buildListTileTotales(Relatorio relatorio) {
+    print('entrando en listtile totales');
+    return Column(
+      children: <Widget>[
+        Divider(
+          color: Colors.black,
+          thickness: 0.5,
         ),
-        DataColumn(
-          label: Text('PRUEBA')
+        ListTile(
+          title: Text('Total Receita líquida:'),
+          trailing: Text('\$${oCcy.format(relatorio.totalLiquida)}'),
         ),
-        DataColumn(
-          label: Text('PRUEBA')
+        ListTile(
+          title: Text('Total Custo Fixo:'),
+          trailing: Text('\$${oCcy.format(relatorio.totalFixo)}'),
         ),
+        ListTile(
+          title: Text('Total Comissão:'),
+          trailing: Text('\$${oCcy.format(relatorio.totalComissao)}'),
+        ),
+        ListTile(
+          title: Text('Total Lucro:'),
+          trailing: Text('\$${oCcy.format(relatorio.totalLucro)}'),
+        ),
+
       ],
-      rows: relatorios.map((relatorio ) => DataRow(
-        cells: <DataCell>[
-          DataCell(
-            Text(relatorio.no_usuario)
-          ),
-          DataCell(
-            Text(relatorio.comissao.toString())
-          ),
-          DataCell(
-            Text(relatorio.lucro.toString())
-          ),
-        ]
-      )
-      ).toList(),
+
     );
-  }
+  }  
 }

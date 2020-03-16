@@ -58,6 +58,7 @@ class ApiDesempenho {
       response = await dio.get(
         '$RELATORIO/${consultor.co_usuario}/${formatEN.format(Provider.periodoFilter.dateEnd)}'
       );
+      
       await response.data.map(( dynamic relatorioJSON) async =>  relatorios.add( Relatorio.fromAPI(relatorioJSON, consultor.co_usuario, consultor.no_usuario) )).toSet();      
 
     });
